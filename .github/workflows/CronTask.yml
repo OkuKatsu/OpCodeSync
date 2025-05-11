@@ -13,6 +13,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Checkout moewcorp/FFXIVNetworkOpcodes repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'moewcorp/FFXIVNetworkOpcodes'  # 另一个仓库的用户名/仓库名
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: 'FFXIVNetworkOpcodes'
+
+      - run: ls FFXIVNetworkOpcodes/output
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
