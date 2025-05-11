@@ -1,6 +1,6 @@
 import os
 import argparse
-from datetime import datetime
+import json
 
 # Function to get the latest folder based on the date in the folder name
 def get_latest_folder(folders):
@@ -10,13 +10,16 @@ def get_latest_folder(folders):
     for folder in folders:
         # Extract the date part from the folder name
         try:
-            date_str = folder.split('_')[1]  # Get the date after the underscore
-            folder_date = datetime.strptime(date_str, "%Y.%m.%d")  # Convert to datetime object
-            
-            # Check if it's the latest folder
-            if latest_date is None or folder_date > latest_date:
-                latest_date = folder_date
-                latest_folder = folder
+            # Example folder format: Global_2025.03.27
+            parts = folder.split('_')
+            if len(parts) > 1:
+                date_str = parts[1]  # Get the date after the underscore
+                folder_date = datetime.strptime(date_str, "%Y.%m.%d")  # Convert to datetime object
+                
+                # Check if it's the latest folder
+                if latest_date is None or folder_date > latest_date:
+                    latest_date = folder_date
+                    latest_folder = folder
         except Exception as e:
             print(f"Skipping folder {folder} due to error: {e}")
     
@@ -27,7 +30,7 @@ def read_machina_txt(folder_path):
     machina_txt_path = os.path.join(folder_path, "machina.txt")
     if os.path.exists(machina_txt_path):
         with open(machina_txt_path, 'r') as file:
-            return file.read()  # Return the content of machina.txt
+            return file.readlines()  # Return content as a list of lines
     else:
         print(f"machina.txt not found in {folder_path}")
         return None
@@ -35,7 +38,7 @@ def read_machina_txt(folder_path):
 # Main function to process the output folder
 def process_output_folder(output_dir):
     prefixes = ["CN", "Global", "KR"]  # Define the prefixes to search for
-    result_dict = {}  # Dictionary to store the results
+    result_list = []  # List to store the results as dictionaries
 
     for prefix in prefixes:
         # List all folders starting with the prefix
@@ -49,15 +52,26 @@ def process_output_folder(output_dir):
             # Read the machina.txt file inside the latest folder
             machina_txt_content = read_machina_txt(folder_path)
             if machina_txt_content:
-                result_dict[latest_folder] = machina_txt_content  # Save the content in the dictionary
+                # Extract time from folder name (e.g., Global_2025.03.27 -> 2025.03.27)
+                time = latest_folder.split('_')[1]  # Extract date part from folder name
+                server = prefix  # Server is the prefix of the folder name (e.g., Global, CN, KR)
+                
+                # Prepare the result data, parsing machina.txt by lines
+                result_dict = {
+                    "time": time,
+                    "server": server,
+                    "opcode": machina_txt_content  # Store the content of machina.txt as a list of lines
+                }
+                result_list.append(result_dict)  # Add to the result list
 
-    return result_dict
+    return result_list
 
 # Main function to parse the arguments and execute the script
 if __name__ == "__main__":
     # Setting up the argument parser
-    parser = argparse.ArgumentParser(description="Process output directory to find the latest folders and read machina.txt files.")
+    parser = argparse.ArgumentParser(description="Process output directory and generate a JSON file with results.")
     parser.add_argument('output_dir', type=str, help='Path to the output directory')
+    parser.add_argument('json_file', type=str, help='Path to the output JSON file')
 
     # Parse arguments
     args = parser.parse_args()
@@ -65,6 +79,13 @@ if __name__ == "__main__":
     # Process the output folder and get the result
     result = process_output_folder(args.output_dir)
     
-    # Print the results
-    for folder, content in result.items():
-        print(f"Folder: {folder}\nContent:\n{content}\n")
+    # Write the result to a JSON file
+    with open(args.json_file, 'w') as json_file:
+        json.dump(result, json_file, indent=4)
+    
+    # Optionally, print the result
+    for folder_data in result:
+        print(f"Time: {folder_data['time']}\nServer: {folder_data['server']}\nOpcode (content):")
+        for line in folder_data['opcode']:
+            print(line.strip())  # Print each line in machina.txt content
+        print()
