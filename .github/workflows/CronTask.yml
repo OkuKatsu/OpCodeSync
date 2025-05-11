@@ -37,6 +37,9 @@ jobs:
       - name: Run Cron Task
         run: python ${{ github.workspace }}/utils/CronTask.py ${{ github.workspace }}/FFXIVNetworkOpcodes/output ${{ github.workspace }}/opcodes.json
 
+      - name: Remove moewcorp/FFXIVNetworkOpcodes
+        run: rm -rf FFXIVNetworkOpcodes
+
       - uses: EndBug/add-and-commit@v9
         with:
           author_name: GitHub Action
