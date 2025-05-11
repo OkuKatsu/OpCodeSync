@@ -1,6 +1,7 @@
 import os
 import argparse
 import json
+from datetime import datetime
 
 # Function to get the latest folder based on the date in the folder name
 def get_latest_folder(folders):
@@ -10,16 +11,13 @@ def get_latest_folder(folders):
     for folder in folders:
         # Extract the date part from the folder name
         try:
-            # Example folder format: Global_2025.03.27
-            parts = folder.split('_')
-            if len(parts) > 1:
-                date_str = parts[1]  # Get the date after the underscore
-                folder_date = datetime.strptime(date_str, "%Y.%m.%d")  # Convert to datetime object
-                
-                # Check if it's the latest folder
-                if latest_date is None or folder_date > latest_date:
-                    latest_date = folder_date
-                    latest_folder = folder
+            date_str = folder.split('_')[1]  # Get the date after the underscore
+            folder_date = datetime.strptime(date_str, "%Y.%m.%d")  # Convert to datetime object
+            
+            # Check if it's the latest folder
+            if latest_date is None or folder_date > latest_date:
+                latest_date = folder_date
+                latest_folder = folder
         except Exception as e:
             print(f"Skipping folder {folder} due to error: {e}")
     
@@ -30,7 +28,7 @@ def read_machina_txt(folder_path):
     machina_txt_path = os.path.join(folder_path, "machina.txt")
     if os.path.exists(machina_txt_path):
         with open(machina_txt_path, 'r') as file:
-            return file.readlines()  # Return content as a list of lines
+            return file.read()  # Return content as a list of lines
     else:
         print(f"machina.txt not found in {folder_path}")
         return None
@@ -85,7 +83,4 @@ if __name__ == "__main__":
     
     # Optionally, print the result
     for folder_data in result:
-        print(f"Time: {folder_data['time']}\nServer: {folder_data['server']}\nOpcode (content):")
-        for line in folder_data['opcode']:
-            print(line.strip())  # Print each line in machina.txt content
-        print()
+        print(f"Time: {folder_data['time']}\nServer: {folder_data['server']}\nOpcode (content): \n{folder_data['opcode']}")
