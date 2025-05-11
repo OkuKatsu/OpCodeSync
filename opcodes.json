@@ -1,0 +1,17 @@
+[
+    {
+        "time": "2025.04.12",
+        "server": "CN",
+        "opcode": "StatusEffectList|3B1\nStatusEffectList2|266\nStatusEffectList3|15C\nBossStatusEffectList|39D\nAbility1|E1\nAbility8|195\nAbility16|2F9\nAbility24|2E8\nAbility32|28D\nActorCast|186\nEffectResult|1E9\nEffectResultBasic|2A0\nActorControl|18E\nActorControlSelf|2DF\nActorControlTarget|128\nUpdateHpMpTp|277\nPlayerSpawn|2C6\nNpcSpawn|1AA\nNpcSpawn2|194\nActorMove|22A\nActorSetPos|1AF\nActorGauge|3B7\nPresetWaymark|134\nWaymark|159\nSystemLogMessage|303"
+    },
+    {
+        "time": "2025.04.16",
+        "server": "Global",
+        "opcode": "StatusEffectList|27B\nStatusEffectList2|1AD\nStatusEffectList3|1A6\nBossStatusEffectList|23D\nAbility1|F5\nAbility8|32D\nAbility16|10F\nAbility24|188\nAbility32|13E\nActorCast|1D4\nEffectResult|8D\nEffectResultBasic|2F2\nActorControl|9C\nActorControlSelf|2E2\nActorControlTarget|115\nUpdateHpMpTp|21C\nPlayerSpawn|374\nNpcSpawn|25E\nNpcSpawn2|3CB\nActorMove|1E7\nActorSetPos|79\nActorGauge|151\nPresetWaymark|FC\nWaymark|2A1\nSystemLogMessage|227"
+    },
+    {
+        "time": "2023.11.01",
+        "server": "KR",
+        "opcode": "StatusEffectList|3AA\nStatusEffectList2|2D5\nStatusEffectList3|14F\nBossStatusEffectList|22A\nAbility1|305\nAbility8|1C8\nAbility16|1DB\nAbility24|11C\nAbility32|11B\nActorCast|2DE\nEffectResult|13A\nEffectResultBasic|3A1\nActorControl|20D\nActorControlSelf|35B\nActorControlTarget|1A8\nUpdateHpMpTp|FA\nPlayerSpawn|32F\nNpcSpawn|3C8\nNpcSpawn2|2D1\nActorMove|2AB\nActorSetPos|190\nActorGauge|102\nPresetWaymark|3DB\nWaymark|271\nSystemLogMessage|3CF"
+    }
+]
