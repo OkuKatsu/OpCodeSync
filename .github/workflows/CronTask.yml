@@ -33,7 +33,7 @@ jobs:
           fi
 
       - name: Run Cron Task
-        run: python ${{ github.workspace }}/utils/CronTask.py ${{ github.workspace }}/FFXIVNetworkOpcodes/output
+        run: python ${{ github.workspace }}/utils/CronTask.py ${{ github.workspace }}/FFXIVNetworkOpcodes/output ${{ github.workspace }}/opcodes.json
 
       - uses: EndBug/add-and-commit@v9
         with:
