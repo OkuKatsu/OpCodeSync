@@ -16,16 +16,14 @@ jobs:
       - name: Checkout moewcorp/FFXIVNetworkOpcodes repository
         uses: actions/checkout@v4
         with:
-          repository: 'moewcorp/FFXIVNetworkOpcodes'  # 另一个仓库的用户名/仓库名
+          repository: 'moewcorp/FFXIVNetworkOpcodes'
           token: ${{ secrets.GITHUB_TOKEN }}
           path: 'FFXIVNetworkOpcodes'
-
-      - run: ls FFXIVNetworkOpcodes/output
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # 选择 Python 版本
+          python-version: '3.x'
 
       - name: Install dependencies
         run: |
@@ -33,4 +31,13 @@ jobs:
           if [ -f requirements.txt ]; then
             pip install -r requirements.txt
           fi
+
+      - name: Run Cron Task
+        run: python ${{ github.workspace }}/utils/CronTask.py ${{ github.workspace }}/FFXIVNetworkOpcodes/output
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          author_name: GitHub Action
+          author_email: github-actions[bot]@users.noreply.github.com
+          message: Regenerate OpCodes.json
 
