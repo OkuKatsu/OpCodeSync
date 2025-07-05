@@ -5,9 +5,9 @@
         "opcode": "StatusEffectList|2C0\nStatusEffectList2|1B0\nStatusEffectList3|173\nBossStatusEffectList|370\nAbility1|273\nAbility8|334\nAbility16|B0\nAbility24|ED\nAbility32|279\nActorCast|274\nEffectResult|186\nEffectResultBasic|379\nActorControl|344\nActorControlSelf|393\nActorControlTarget|81\nUpdateHpMpTp|2DB\nPlayerSpawn|DC\nNpcSpawn|14F\nNpcSpawn2|9E\nActorMove|11C\nActorSetPos|210\nActorGauge|18E\nPresetWaymark|34D\nWaymark|118\nSystemLogMessage|138"
     },
     {
-        "time": "2025.06.19",
+        "time": "2025.06.28",
         "server": "Global",
-        "opcode": "StatusEffectList|2EC\nStatusEffectList2|E1\nStatusEffectList3|3B6\nBossStatusEffectList|3AF\nAbility1|BC\nAbility8|22C\nAbility16|108\nAbility24|123\nAbility32|10E\nActorCast|87\nEffectResult|3E5\nEffectResultBasic|C1\nActorControl|3E7\nActorControlSelf|117\nActorControlTarget|251\nUpdateHpMpTp|FC\nPlayerSpawn|32A\nNpcSpawn|38C\nNpcSpawn2|81\nActorMove|2CD\nActorSetPos|33D\nActorGauge|2DD\nPresetWaymark|3CC\nWaymark|21A\nSystemLogMessage|3CB"
+        "opcode": "StatusEffectList|209\nStatusEffectList2|383\nStatusEffectList3|37E\nBossStatusEffectList|183\nAbility1|125\nAbility8|249\nAbility16|243\nAbility24|31F\nAbility32|14E\nActorCast|113\nEffectResult|1AF\nEffectResultBasic|81\nActorControl|3E7\nActorControlSelf|16F\nActorControlTarget|18D\nUpdateHpMpTp|2B7\nPlayerSpawn|1D5\nNpcSpawn|99\nNpcSpawn2|B1\nActorMove|2BB\nActorSetPos|149\nActorGauge|1A8\nPresetWaymark|365\nWaymark|22D\nSystemLogMessage|1C8"
     },
     {
         "time": "2023.11.01",
